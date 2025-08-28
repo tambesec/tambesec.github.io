@@ -16,17 +16,17 @@ timezone: Asia/Saigon
 
 title: Tam' Blog # the main title
 
-tagline: Pentester # it will display as the subtitle
+tagline: Pentester | Bug Bounty Hunter # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   This is a blog about Cyber Security.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://thantrungtam.github.io"
+url: "https://tambesec.github.io"
 
 github:
-  username: thantrungtam # change to your GitHub username
+  username: tambesec # change to your GitHub username
 
 twitter:
   username: thantrungtam # change to your Twitter username
@@ -34,8 +34,8 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Than Trung Tam
-  email: thantrungtam311@gmail.com # change to your email address
+  name: tambeseec
+  email: tambesec@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/thantrungtam # change to your Twitter homepage
@@ -78,7 +78,7 @@ analytics:
 pageviews:
   provider: # now only supports 'goatcounter'
   goatcounter:
-    id: thantrungtam
+    id: tambesec
 
 # Prefer color scheme setting.
 #

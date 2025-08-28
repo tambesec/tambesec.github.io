@@ -1,0 +1,61 @@
+name: Publish HTB Write-ups on Retirement
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Chạy mỗi ngày lúc 00:00 UTC
+  workflow_dispatch: # Cho phép chạy thủ công
+
+jobs:
+  check_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: sudo apt-get install -y jq
+
+      - name: Check HTB Retirement Status for Multiple Machines
+        run: |
+          CHANGED=false
+          HTB_API_TOKEN="${{ secrets.HTB_API_TOKEN }}"
+
+          # Lấy danh sách tất cả máy và ID của chúng
+          MACHINE_LIST=$(curl -s -H "Authorization: Bearer $HTB_API_TOKEN" "https://www.hackthebox.com/api/v4/machine/list")
+
+          for FILE in _posts/*.md; do
+            MACHINE_NAME=$(basename "$FILE" .md | sed 's/htb-//')
+
+            # Lấy Machine ID từ danh sách
+            MACHINE_ID=$(echo "$MACHINE_LIST" | jq -r --arg NAME "$MACHINE_NAME" '.machines[] | select(.name==$NAME) | .id')
+
+            if [[ -z "$MACHINE_ID" ]]; then
+              echo "Machine ID for $MACHINE_NAME not found. Skipping."
+              continue
+            fi
+
+            # Kiểm tra trạng thái retired của máy bằng ID
+            RETIRED_STATUS=$(curl -s -H "Authorization: Bearer $HTB_API_TOKEN" "https://www.hackthebox.com/api/v4/machine/$MACHINE_ID" | jq -r '.retired')
+
+            if [[ "$RETIRED_STATUS" == "true" ]]; then
+              echo "Machine $MACHINE_NAME has retired. Publishing write-up..."
+              sed -i 's/published: false/published: true/' "$FILE"
+              CHANGED=true
+            else
+              echo "Machine $MACHINE_NAME is still active."
+            fi
+          done
+
+          if [[ "$CHANGED" == "true" ]]; then
+            git config --global user.email "thantam311@gmail.com"
+            git config --global user.name "thantrungtam"
+            git add _posts/*.md
+            git commit -m "Auto-publish write-ups for retired HTB machines"
+            git push
+          else
+            echo "No retired machines found, no changes to push."
+          fi
+
+      - name: Build and Deploy to GitHub Pages
+        if: success()
+        uses: actions/jekyll-build-pages@v1
