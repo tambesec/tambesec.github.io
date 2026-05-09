@@ -12,3 +12,11 @@ order: 4
 
 # II. About The Author
 ### I am majoring in information security at _Posts and Telecommunications Institute of Technology_ in Ho Chi Minh City, Vietnam. Strength in pentest and bug bounty.
+
+## III. Profiles
+
+| Platform | Profile Link |
+| :--- | :--- |
+| **Bugcrowd** | [h4ckmonkey](https://bugcrowd.com/h/h4ckmonkey) |
+| **HackTheBox** | [1724173](https://app.hackthebox.com/users/1724173) |
+| **TryHackMe** | [h4ckmonkey](https://tryhackme.com/p/h4ckmonkey) |
