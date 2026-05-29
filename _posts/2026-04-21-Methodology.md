@@ -81,6 +81,7 @@ awk -F '//' '{print $2}' | sort -u > ffuf_subs.txt
 ### More Enumeration Subdomains
 
 - Shodan tools
+
 ```bash
 shosubgo -d $target -s YOUR_TOKEN -o shodan_subs.txt
 ```
