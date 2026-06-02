@@ -11,7 +11,7 @@ tags:
   - p4
   - bugcrowd
 ---
-
+****
 ## Overview
 
 This is a writeup for a P4 vulnerability I discovered and submitted on Bugcrowd. The vulnerability involves a hardcoded API key exposed in the frontend, which granted unauthorized access to sensitive endpoints. Note that all target constraints below have been anonymized to protect the company's identity.
