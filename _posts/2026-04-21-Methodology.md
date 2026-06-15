@@ -1,6 +1,6 @@
 ---
 title: Bug Bounty Methodology
-date: 2026-04-21 00:00:00 +0700
+date: 2025-07-21 00:00:00 +0700
 layout: post
 categories:
   - Methodology
